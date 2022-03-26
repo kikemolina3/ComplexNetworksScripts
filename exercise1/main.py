@@ -7,10 +7,10 @@ import statistics
 ### PART 1 - DESCRIPTORS OF GRAPHS
 FILE1HEADER = ['Graph name', 'Number of nodes', 'Number of edges', 'Minimum degree', 'Maximum degree', 'Average degree', 'Avg clustering coefficient', 'Assortativity', 'Average path length', 'Diameter']
 GENERALIST = []
-for folder in os.listdir(os.getcwd() + '\\exercise1'):
-    for net in os.listdir(os.getcwd() + "\\exercise1\\" + folder):
+for folder in os.listdir(os.getcwd()):
+    for net in os.listdir(os.getcwd() + "\\" + folder):
         GRAPHLIST = []
-        g = nx.read_pajek(os.getcwd() + "\\exercise1\\" + folder + "\\" + net)
+        g = nx.read_pajek(os.getcwd() + "\\" + folder + "\\" + net)
         g = nx.Graph(g)
         GRAPHLIST.append(net)
         GRAPHLIST.append(str(nx.number_of_nodes(g)))
@@ -30,7 +30,7 @@ with open('part1.csv', 'w') as csvfile:
     csvwriter.writerows(GENERALIST)
 
 ### PART 2 - DESCRIPTORS OF NODES IN AIRPORTS NET
-g = nx.read_pajek('exercise1/real/airports_UW.net')
+g = nx.read_pajek('real/airports_UW.net')
 g = nx.Graph(g)
 gW = g.copy()
 nx.set_edge_attributes(g, 1, 'weigth')

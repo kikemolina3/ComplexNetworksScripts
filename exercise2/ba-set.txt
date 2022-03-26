@@ -1,0 +1,12 @@
+//network1
+N=100
+m0=10
+m=4
+//network2
+N=500
+m0=50
+m=10
+//network3
+N=1000
+m0=100
+m=13
