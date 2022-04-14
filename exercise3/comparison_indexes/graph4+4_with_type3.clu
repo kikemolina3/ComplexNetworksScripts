@@ -1,0 +1,34 @@
+Partition1: .\toy\graph4+4.clu
+Partition2: .\type3\graph4+4.clu
+
+Number of Lists(1) : 2
+Number of Lists(2) : 3
+
+Same Class Agreements : 6
+Agreements            : 21
+Disagreements(1)      : 6
+Disagreements(2)      : 1
+Disagreements         : 7
+Pairs                 : 28
+
+Jaccard Index         : 0.4615
+Rand Index            : 0.7500
+Adjusted Rand Index   : 0.4615
+Fowlkes Mallows Index : 0.6547
+Normalized Mutual Information Index (maximum)    : 0.4804
+Normalized Mutual Information Index (arithmetic) : 0.5856
+Normalized Mutual Information Index (geometric)  : 0.6002
+Normalized Mutual Information Index (minimum)    : 0.7500
+Asymmetric Wallace Index(1) : 0.5000
+Asymmetric Wallace Index(2) : 0.8571
+
+Mirkin Metric                   : 14.0000
+Van Dongen Metric               : 3.0000
+Variation Of Information Metric : 1.0613
+Normalized Mirkin Metric                   : 0.2500
+Normalized Van Dongen Metric               : 0.1875
+Normalized Variation Of Information Metric : 0.3538
+
+Contingency table (Partition1 x Partition2):
+3	1	0
+0	1	3

@@ -1,0 +1,44 @@
+Partition1: .\real\football-conferences.clu
+Partition2: .\type3\football.clu
+
+Number of Lists(1) : 12
+Number of Lists(2) : 10
+
+Same Class Agreements : 477
+Agreements            : 6351
+Disagreements(1)      : 46
+Disagreements(2)      : 158
+Disagreements         : 204
+Pairs                 : 6555
+
+Jaccard Index         : 0.7004
+Rand Index            : 0.9689
+Adjusted Rand Index   : 0.8069
+Fowlkes Mallows Index : 0.8277
+Normalized Mutual Information Index (maximum)    : 0.8583
+Normalized Mutual Information Index (arithmetic) : 0.8903
+Normalized Mutual Information Index (geometric)  : 0.8909
+Normalized Mutual Information Index (minimum)    : 0.9249
+Asymmetric Wallace Index(1) : 0.9120
+Asymmetric Wallace Index(2) : 0.7512
+
+Mirkin Metric                   : 408.0000
+Van Dongen Metric               : 24.0000
+Variation Of Information Metric : 0.7495
+Normalized Mirkin Metric                   : 0.0311
+Normalized Van Dongen Metric               : 0.1043
+Normalized Variation Of Information Metric : 0.1095
+
+Contingency table (Partition1 x Partition2):
+8	0	0	0	0	0	0	0	0	0
+0	9	0	0	0	0	0	0	0	0
+0	0	11	0	0	0	0	0	0	0
+0	0	0	12	0	0	0	0	0	0
+0	0	0	0	10	0	0	0	0	0
+4	0	0	0	0	0	3	0	0	0
+0	0	0	0	0	13	0	0	0	0
+0	0	0	0	0	0	12	0	0	0
+0	0	0	0	0	0	0	8	0	0
+1	0	0	0	0	0	1	0	0	8
+1	0	0	0	0	2	0	2	0	0
+0	0	0	0	0	0	0	0	9	1

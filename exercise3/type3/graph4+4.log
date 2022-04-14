@@ -1,0 +1,8 @@
+=====================================
+Starting 1 Louvain
+  resizing
+  Q = 0.440816   comms = 3
+  End rep
+End of 1 Louvain
+=====================================
+Q_Best = 0.440816   (0.007s)   communities: 3   parameters: WN l 1

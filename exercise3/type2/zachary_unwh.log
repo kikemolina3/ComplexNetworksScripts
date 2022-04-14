@@ -1,0 +1,122 @@
+=====================================
+Starting 3 Reposition
+  Q = 0.212442   comms = 12
+  Q = 0.311226   comms = 9
+  Q = 0.332018   comms = 8
+  End rep
+End of 3 Reposition
+Q(r) = 0.332018   (0.008s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Spectral
+  Q = 0.371466   comms = 2
+  Q = 0.372699   comms = 3
+  Q = 0.393409   comms = 4
+  End rep
+  Q = 0.371466   comms = 2
+  Q = 0.392176   comms = 3
+  Q = 0.393409   comms = 4
+  End rep
+  Q = 0.371466   comms = 2
+  Q = 0.392176   comms = 3
+  Q = 0.393409   comms = 4
+  End rep
+End of 3 Spectral
+Q(s) = 0.393409   (0.045s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Extremal
+  Q = 0.371795   comms = 2
+  Q = 0.402038   comms = 3
+  Q = 0.418803   comms = 4
+  End rep
+  Q = 0.371795   comms = 2
+  Q = 0.402038   comms = 3
+  Q = 0.418803   comms = 4
+  End rep
+  Q = 0.371795   comms = 2
+  Q = 0.402038   comms = 3
+  Q = 0.418803   comms = 4
+  End rep
+End of 3 Extremal
+Q(e) = 0.418803   (0.035s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Louvain
+  Q = 0.217045   comms = 13
+  Q = 0.289530   comms = 10
+  Q = 0.350920   comms = 7
+  Q = 0.361358   comms = 6
+  resizing
+  Q = 0.361358   comms = 6
+  Q = 0.418803   comms = 4
+  resizing
+  Q = 0.418803   comms = 4
+  End rep
+End of 3 Louvain
+Q(l) = 0.418803   (0.014s)
+=====================================
+Starting 3 Louvain
+  Q = 0.419790   comms = 4
+  resizing
+  Q = 0.419790   comms = 4
+  End rep
+End of 3 Louvain
+Q(l) = 0.419790   (0.007s)
+=====================================
+Ini_Best
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.419790   (0.005s)
+=====================================
+Starting 3 Fast
+  Q = 0.419790   comms = 4
+  End rep
+End of 3 Fast
+Q(f) = 0.419790   (0.006s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.419790   (0.006s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Tabu
+  Q = 0.200279   comms = 15
+  Q = 0.418803   comms = 4
+  Q = 0.419790   comms = 4
+  End rep
+  Q = 0.248849   comms = 14
+  Q = 0.405983   comms = 5
+  Q = 0.419790   comms = 4
+  End rep
+  Q = 0.233153   comms = 15
+  Q = 0.391519   comms = 5
+  Q = 0.417406   comms = 4
+  End rep
+End of 3 Tabu
+Q(t) = 0.419790   (0.056s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.419790   (0.005s)
+=====================================
+Starting 3 Fast
+  Q = 0.419790   comms = 4
+  End rep
+End of 3 Fast
+Q(f) = 0.419790   (0.006s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.419790   (0.004s)
+=====================================
+Q_Best = 0.419790   (0.196s)   communities: 4   parameters: WN r-s-e-ll!rfr-trfr 3

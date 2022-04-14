@@ -1,0 +1,89 @@
+=====================================
+Starting 3 Reposition
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Reposition
+Q(r) = 0.000000   (0.006s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Spectral
+  End rep
+  End rep
+  End rep
+End of 3 Spectral
+Q(s) = 0.000000   (0.008s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Extremal
+  End rep
+  End rep
+  End rep
+End of 3 Extremal
+Q(e) = 0.000000   (0.007s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Louvain
+  Q = 0.000000   comms = 1
+  resizing
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Louvain
+Q(l) = 0.000000   (0.007s)
+=====================================
+Starting 3 Louvain
+  resizing
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Louvain
+Q(l) = 0.000000   (0.006s)
+=====================================
+Ini_Best
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.000000   (0.005s)
+=====================================
+Starting 3 Fast
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Fast
+Q(f) = 0.000000   (0.005s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.000000   (0.004s)
+=====================================
+Ini_Default
+=====================================
+Starting 3 Tabu
+  Q = 0.000000   comms = 1
+  End rep
+  Q = 0.000000   comms = 1
+  End rep
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Tabu
+Q(t) = 0.000000   (0.016s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.000000   (0.005s)
+=====================================
+Starting 3 Fast
+  Q = 0.000000   comms = 1
+  End rep
+End of 3 Fast
+Q(f) = 0.000000   (0.005s)
+=====================================
+Starting 3 Reposition
+  End rep
+End of 3 Reposition
+Q(r) = 0.000000   (0.004s)
+=====================================
+Q_Best = 0.000000   (0.078s)   communities: 1   parameters: WN r-s-e-ll!rfr-trfr 3
