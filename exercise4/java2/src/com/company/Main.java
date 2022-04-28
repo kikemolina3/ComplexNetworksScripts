@@ -13,9 +13,14 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
 
-    public static final int BEGIN_STATIONARY = 900;
-    protected static final Integer NUM_REPETITIONS = 50;
-    public static final int TOTAL_ITERATIONS = 1000;
+    /********* DEFINITIONS ZONE (manipulate only these variables) *********/
+    public static final String FILENAME = "football.net";
+    public static final int BEGIN_STATIONARY = 900;                 // T_trans
+    protected static final Integer NUM_REPETITIONS = 100;           // N_rep
+    public static final int TOTAL_ITERATIONS = 1000;                // T_max
+    public static final Float INITIAL_PROBABILITY_INFECTION = 20F;  // ρ(0)
+    public static final Float RECOVERY_PROBABILITY = 90F;           // µ
+    /************************************/
 
     static Supplier<Node> nodeFactory;
     static Supplier<Integer> edgeFactory;
@@ -36,68 +41,78 @@ public class Main {
 
         inits();
 
-        List<String> files = new ArrayList<>(List.of("football.net"));
-        files.forEach(i -> {
-            for (Float infectionProbability = 0F; infectionProbability <= 100F; infectionProbability += 2F) {
-                Double simulationAverages = 0.0;
-                for (int j = 0; j < NUM_REPETITIONS; j++) {
-                    try {
-                        Double stationaryAverages = 0.0;
-                        Float initialProbabilityInfection = 20F;
-                        Float recoveryProbability = 90F;
-                        nodeFactory =
-                                new Supplier<>() {
-                                    Integer m = 0;
+        for (Float infectionProbability = 0F; infectionProbability <= 100F; infectionProbability += 2F) {   //β
+            Double simulationAverages = 0.0;
+            for (int j = 0; j < NUM_REPETITIONS; j++) {
+                try {
+                    String file = "resources/" + FILENAME;
+                    FileReader fileReader = new FileReader(file);
+                    Double stationaryAverages = 0.0;
 
-                                    public Node get() {
-                                        return new Node(m++, initialProbabilityInfection);
-                                    }
-                                };
-                        String file = "resources/" + i;
-                        FileReader fileReader = new FileReader(file);
-                        PajekNetReader<UndirectedSparseGraph<Node, Integer>, Node, Integer> pajekNetReader =
-                                new PajekNetReader<>(nodeFactory, edgeFactory);
-                        UndirectedSparseGraph<Node, Integer> g = new UndirectedSparseGraph<>();
-                        pajekNetReader.load(fileReader, g);
-                        Cloner cloner = new Cloner();
-                        UndirectedSparseGraph<Node, Integer> gClone = cloner.deepClone(g);
-                        ArrayList<Node> gNodeList = new ArrayList<>(g.getVertices());
-                        gNodeList.sort(Node::compareTo);
-                        for (int k = 0; k < TOTAL_ITERATIONS; k++) {
-                            ArrayList<Node> gCloneNodeList = new ArrayList<>(gClone.getVertices());
-                            gCloneNodeList.sort(Node::compareTo);
-                            for (Node n : gNodeList) {
-                                if (n.getState() == State.INFECTED)
-                                    gCloneNodeList.get(n.getIndex()).setState(Math.random() <= (recoveryProbability / 100) ? State.SUSCEPTIBLE : State.INFECTED);
-                                else {
-                                    AtomicReference<Integer> infectedNb = new AtomicReference<>(0);
-                                    for (Node nb : g.getNeighbors(n)) {
-                                        if (nb.getState() == State.INFECTED)
-                                            infectedNb.getAndSet(infectedNb.get() + 1);
-                                    }
-                                    double effectiveInfectionProbability = 1 - Math.pow((1 - infectionProbability), infectedNb.get());
-                                    gCloneNodeList.get(n.getIndex()).setState(Math.random() <= (effectiveInfectionProbability / 100) ? State.INFECTED : State.SUSCEPTIBLE);
+                    // Define initial nodes state
+                    nodeFactory =
+                            new Supplier<>() {
+                                Integer m = 0;
+
+                                public Node get() {
+                                    return new Node(m++, INITIAL_PROBABILITY_INFECTION);
                                 }
-                            }
-                            g = gClone;
-                            gNodeList = new ArrayList<>(g.getVertices());
-                            gNodeList.sort(Node::compareTo);
-                            gClone = cloner.deepClone(g);
-                            if (k >= BEGIN_STATIONARY) {
-                                stationaryAverages += Node.percentInfected(gClone.getVertices());
-                            }
+                            };
 
+                    // Load graph
+                    PajekNetReader<UndirectedSparseGraph<Node, Integer>, Node, Integer> pajekNetReader =
+                            new PajekNetReader<>(nodeFactory, edgeFactory);
+                    UndirectedSparseGraph<Node, Integer> g = new UndirectedSparseGraph<>();
+                    pajekNetReader.load(fileReader, g);
+
+                    // Graph cloning (two buffered graph technique)
+                    Cloner cloner = new Cloner();
+                    UndirectedSparseGraph<Node, Integer> gClone = cloner.deepClone(g);
+                    ArrayList<Node> gNodeList = new ArrayList<>(g.getVertices());
+                    gNodeList.sort(Node::compareTo);
+
+                    for (int k = 0; k < TOTAL_ITERATIONS; k++) {
+                        ArrayList<Node> gCloneNodeList = new ArrayList<>(gClone.getVertices());
+                        gCloneNodeList.sort(Node::compareTo);
+                        // Change state of nodes depending on probabilities epidemic spreading
+                        for (Node n : gNodeList) {
+                            if (n.getState() == State.INFECTED)
+                                gCloneNodeList.get(n.getIndex()).setState(Math.random() <= (RECOVERY_PROBABILITY / 100) ? State.SUSCEPTIBLE : State.INFECTED);
+                            else {
+                                AtomicReference<Integer> infectedNb = new AtomicReference<>(0);
+                                for (Node nb : g.getNeighbors(n)) {
+                                    if (nb.getState() == State.INFECTED)
+                                        infectedNb.getAndSet(infectedNb.get() + 1);
+                                }
+                                double effectiveInfectionProbability = 1 - Math.pow((1 - infectionProbability), infectedNb.get());
+                                gCloneNodeList.get(n.getIndex()).setState(Math.random() <= (effectiveInfectionProbability / 100) ? State.INFECTED : State.SUSCEPTIBLE);
+                            }
                         }
-                        stationaryAverages /= (TOTAL_ITERATIONS - BEGIN_STATIONARY);
-                        simulationAverages += stationaryAverages;
-                    } catch (Exception e) {
-                        e.printStackTrace();
+
+                        // Replace graph buffer
+                        g = gClone;
+                        gNodeList = new ArrayList<>(g.getVertices());
+                        gNodeList.sort(Node::compareTo);
+                        gClone = cloner.deepClone(g);
+
+                        // Accumulate average values stationary state
+                        if (k >= BEGIN_STATIONARY) {
+                            stationaryAverages += Node.percentInfected(gClone.getVertices());
+                        }
+
                     }
+                    // Accumulate values between different simulations of same config
+                    stationaryAverages /= (TOTAL_ITERATIONS - BEGIN_STATIONARY);
+                    simulationAverages += stationaryAverages;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                simulationAverages /= NUM_REPETITIONS;
-                System.out.println("Beta: " + infectionProbability + "\tInfected %: " + simulationAverages);
             }
-        });
+
+            // Print ρ for 51 different β values
+            simulationAverages /= NUM_REPETITIONS;
+            System.out.println("Beta: " + infectionProbability + "\tInfected %: " + simulationAverages);
+        }
     }
 }
 
